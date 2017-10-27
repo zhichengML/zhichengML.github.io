@@ -1,18 +1,31 @@
 ---
-title: Why Blog
+title: Why Keep Writing Blog?
 layout: post
 ---
 
-## 对博客的理解
 
-我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。
+## 1. Personal Need
 
-通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。
+By writing blog, I could able to document my life experience. For so many time, I failed to recall expriences and what I have learned clearly. 
 
-分类有助于我们对信息的隔离，例如我把自己的记录分成这几类：技术、工具、资源、生活、读书和旅游。这是我生活重中最重要的几个类别，我希望把自己的一些心得和尝试写在相应分类中。
+Memories are so fragile! Keeping a note is a good way to keep my life lively.
 
-## 博客平台
+## 2. Systematically Learn Kownledge
 
-这个博客通过 [Jekyll](http://jekyllrb.com/) 生成，部署在 [Github](https://pages.github.com)，主题基于 [3-Jekyll](https://github.com/P233/3-Jekyll) 修改生成，非常感谢 [Peiwen Lu](https://github.com/P233) 开发出这么漂亮的主题。
+Writing blog, especially technic blog is a good way to review theose knowledge systematically. When begin writing blog, I tried to build up the connection among the knowledge I have learned.
 
-我博客的源码托管在[Github](https://github.com/suyan/suyan.github.io)上，如果有任何改进意见，欢迎讨论。
+## 3. Sharing is Happiness
+
+Sharing knowledge is a really a happy thing to me. My ultimate goal is to achieve something really pracitical for this world. Also, I like sharing and challenging difficulties. That's why I aims to become a professor in college. Start to write a blog is one of the great way to prepare for my goal.
+
+## 4. Knowledge Interaction
+
+Writing blog is also an another way to listen to people, for not only technic correction, but also life. As for technic blog, for sure I could not ensure all the things I write is 100% right. I will try my best to leave as least wrong idea as possible, but blog is a good way for reader to help me correct it. As for life experience, I would like to hear from different opinions. And I will try to best to do the best.
+
+
+
+
+Finally, hope everyone could find something useful in this blog. Good luck!
+
+Thanks,
+ZhichengML
