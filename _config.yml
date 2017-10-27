@@ -4,7 +4,7 @@ email: jason--ding@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
   zhichengML
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: http://yansu.org # the base hostname & protocol for your site
+url: http://zhichengML.me # the base hostname & protocol for your site
 rss_url: /pages/feed.xml
 author: zhichengML
 
@@ -22,7 +22,7 @@ linkedin: zhicheng-ding-a80595b3
 
 # avatar and Favicon
 avatar: /img/avater-zhichengding.png
-favicon: /img/favicon.ico
+favicon: /img/zhicheng-favicon.ico
 
 # disqus config
 disqus:
