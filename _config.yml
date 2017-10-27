@@ -30,7 +30,7 @@ disqus:
 
 # google analytics config
 ga:
-  id: UA-54767140-1
+  id: UA-54767140-1               # Format: UA-xxxxxx-xx
   url: https://zhichengML.me
 
 # Build settings
