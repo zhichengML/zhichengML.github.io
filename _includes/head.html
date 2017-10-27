@@ -17,4 +17,11 @@
   {% feed_meta %}
 
   <script src="{{ "/assets/js/prefixfree.js" | prepend: site.baseurl }}"></script>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+  });
 </head>
