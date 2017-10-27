@@ -16,7 +16,7 @@ recent_num: 20
 # Social account
 #twitter: masonsuyan
 #weibo: suyan0830
-github: suyan
+github: zhichengML
 #instagram: suyan0830
 linkedin: zhicheng-ding-a80595b3
 
@@ -26,7 +26,7 @@ favicon: http://7u2ho6.com1.z0.glb.clouddn.com/site-favicon.ico
 
 # disqus config
 disqus:
-  shortname: suyan-zh
+  shortname: zhichengML
 
 # google analytics config
 ga:
