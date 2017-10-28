@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 0.Machine learning Foundation - Introduction
+title: Machine learning Foundation
 categories: [Deep Learning2]
 tags: DL
 ---
