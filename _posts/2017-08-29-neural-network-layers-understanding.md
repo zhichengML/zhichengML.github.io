@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 深度学习：Neural Network Layers Understanding
-categories: [Deep Learning]
-tags: DL
+title: 深度学习：Neural Network Layers Understanding124124
+categories: [Deep Learning212124]
+tags: DL14
 ---
 
 > 我想做又应该做的事，都会做到；我想做却不应做的事，都会戒掉。
