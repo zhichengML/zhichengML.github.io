@@ -1,3 +1,10 @@
+---
+layout: post
+title: How to use MathJax in Markdown
+categories: [Markdown]
+tags: Markdown
+---
+
 # How to use MathJax in Markdown
 
 
@@ -20,7 +27,7 @@ test: $$n==x$$
 ```
 
 
-# Reference
+## Reference
 [1] [Markdown中插入数学公式的方法](http://blog.csdn.net/xiahouzuoxin/article/details/26478179)
 [2] [MathJax Chinese Doc 2.0 documentation](http://mathjax-chinese-doc.readthedocs.io/en/latest/start.html)
 [3] [MathJax basic tutorial and quick reference](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
