@@ -28,3 +28,5 @@ syntax_highlighter: rouge
 # White-listed plugins
 gems:
   - jekyll-sitemap
+
+theme: jekyll-theme-slate
