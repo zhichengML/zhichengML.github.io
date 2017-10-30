@@ -38,3 +38,19 @@ description: To be defined
     Writing blog is also an another way to listen to people, for not only technic correction, but also life. As for technic blog, for sure I could not ensure all the things I write is 100% right. I will try my best to leave as least wrong idea as possible, but blog is a good way for reader to help me correct it. As for life experience, I would like to hear from different opinions. And I will try to best to do the best.
   </p>
 </section>
+
+
+<section class="inner">
+  <div class="post-recents-in-index">
+    <strong>Recent blog posts</strong>
+  </div>
+  <blockquote>
+    <ul>
+      {% for post in site.posts limit:5 %}
+      <li class="post-list-in-index">
+      <small class="post-list-date-in-index">{{ post.date | date_to_string }}</small><a  href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </blockquote>
+</section>
