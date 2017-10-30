@@ -10,7 +10,7 @@ category: categories
 <nav class = "sub-nav">
     <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">Home</a>
     <a class="{% if page.category == 'categories' %} selected {% endif %}" href="/blog/categories.html">Categories</a>
-    <a class="{% if page.category == 'donate' %} selected {% endif %}" href="/blog/donate.html">Donate</a>
+    <!--<a class="{% if page.category == 'donate' %} selected {% endif %}" href="/blog/donate.html">Donate</a>-->
 </nav>
 </div>
 </div>
@@ -23,7 +23,7 @@ category: categories
 
 <section class="inner">
 {% for cat in site.categories %}
-  <li class="category-listing-seperator" id="{{ cat[0] }}">{{ cat[0] }}（共{{ cat[1].size }}篇）</li>
+  <li class="category-listing-seperator" id="{{ cat[0] }}">{{ cat[0] }}（total:{{ cat[1].size }}）</li>
     {% for post in cat[1] %}
     <div class = "post-link-in-posts">
     <a id = "uniqueid"  class="listing-item" href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}<time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time></a>
