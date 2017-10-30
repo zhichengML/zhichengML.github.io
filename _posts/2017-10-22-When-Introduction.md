@@ -110,7 +110,7 @@ E.g.,
 > 以银行是否应该对客户发放信用卡作为例子
 ### 1) Basic Notation
 ![Basic Notation](https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/b871ce6fb178e7433d1565e2b0a1791c11d8d39a/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter1-2%20Basic%20Notation.png)
-<center>Basic Notation<sup>[1]<sup></center>
+<center>Basic Notation<sup>[1]</sup></center>
 
 
 
