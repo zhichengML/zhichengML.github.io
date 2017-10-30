@@ -482,7 +482,7 @@ img[alt=drawing] { width: 60%; }
 .post-link-in-posts .tag {
     color: #939aa1;
     font-weight: normal;
-    font-size: 0.6em;
+    font-size: 1.0em;
     float: right;
     font-family: 'lucida grande', 'lucida sans unicode', lucida, 'Helvetica Neue', helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 }
