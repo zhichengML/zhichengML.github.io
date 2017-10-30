@@ -16,12 +16,6 @@
   {% if page.description %}<meta name="description" content="{{page.description}}" />{% endif %}
   <link href="/blog/feed.xml" type="application/rss+xml" rel="alternate" title="Latest 10 blog posts (atom)" />
 
-  {% if page.url == '/index.html' %}
-    <link rel="alternate" hreflang="en" href="/" />
-  {% elsif page.url == '/cn/index.html' %}
-    <link rel="alternate" hreflang="cn" href="/cn/" />
-  {% endif %}
-
   {{ page.extra_head }}
 
   {% if page.category == 'blog' %}
@@ -34,33 +28,6 @@
 <body>
   <div class="header-container">
     <header class="inner">
-      {% if page.url == '/cn/' %}
-      <nav>
-        <a class="{% if page.category == 'about-zh' %} selected {% endif %}" href="/cn/">关于</a>
-        <a class="{% if page.category == 'project-zh' %} selected {% endif %}" href="/cn/project">项目</a>
-        <!--<a class="{% if page.category == 'resume' %} selected {% endif %}" href="/resume/">Resume</a>-->
-        <!--<a href="/resume/">简历</a>-->
-        <a href="/YongYuan_resume.pdf">简历</a>
-        <!--<a class="{% if page.category == 'publication' %} selected {% endif %}" href="/publication/">出版</a>-->
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">博客</a>
-        <a href="/books/">书单</a>
-		    <a href="/timeline/">时间线</a>
-        <a href="https://github.com/willard-yuan">Github</a>
-      </nav>
-      {% elsif page.url == '/cn/project' %}
-      <nav>
-        <a class="{% if page.category == 'about-zh' %} selected {% endif %}" href="/cn/">关于</a>
-        <a class="{% if page.category == 'project-zh' %} selected {% endif %}" href="/cn/project">项目</a>
-        <!--<a class="{% if page.category == 'resume' %} selected {% endif %}" href="/resume/">Resume</a>-->
-        <!--<a href="/yuanyong_resume_cn.pdf">简历</a>-->
-	      <a href="/YongYuan_resume.pdf">简历</a>
-        <!--<a class="{% if page.category == 'publication' %} selected {% endif %}" href="/publication/">出版</a>-->
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">博客</a>
-	      <a href="/books/">书单</a>
-		    <a href="/timeline/">时间线</a>
-        <a href="https://github.com/willard-yuan">Github</a>
-      </nav>
-      {% else %}
       <nav>
         <a class="{% if page.category == 'home' %} selected {% endif %}" href="/">Home</a>
         <a class="{% if page.category == 'about' %} selected {% endif %}" href="/">About</a>
@@ -74,7 +41,6 @@
 		    <a href="/timeline/">Times</a>
         <a href="https://github.com/willard-yuan">Github</a>
       </nav>
-	  {% endif %}
 
       <div class="pull-right right logo">
         <!--<div class="name">
