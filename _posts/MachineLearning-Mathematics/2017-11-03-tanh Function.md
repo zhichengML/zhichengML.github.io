@@ -1,3 +1,11 @@
+---
+layout: post
+title: tanh Function
+categories: [Machine-Learning-Mathematics]
+tags: Machine-Learning-Mathematics
+---
+
+
 # tanh Function
 
 

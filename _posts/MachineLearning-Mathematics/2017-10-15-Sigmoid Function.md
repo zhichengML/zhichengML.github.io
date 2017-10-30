@@ -1,3 +1,11 @@
+---
+layout: post
+title: Sigmoid Function
+categories: [Machine-Learning-Mathematics]
+tags: Machine-Learning-Mathematics
+---
+
+
 # Sigmoid Function
 
 

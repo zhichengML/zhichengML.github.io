@@ -2,7 +2,7 @@
 layout: post
 title: 线性模型性能分析--混淆矩阵(Confusion Matrix)
 categories: [Machine Learning-Mathematics]
-tags: Machine Learning-Mathematics
+tags: Machine-Learning-Mathematics
 ---
 
 

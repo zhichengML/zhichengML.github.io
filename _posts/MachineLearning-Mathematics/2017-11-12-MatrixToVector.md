@@ -1,3 +1,10 @@
+---
+layout: post
+title: Matrix and Vector Transformation
+categories: [Machine-Learning-Mathematics]
+tags: Machine-Learning-Mathematics
+---
+
 # Mathematics - Matrix and Vector Transformation
 ------------------------------------------
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
