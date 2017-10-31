@@ -746,6 +746,8 @@ code.has-jax {font: inherit;
   -moz-osx-font-smoothing: grayscale;
   cursor: pointer; }
 
+.icon-up:before {
+  content: "\e60c"; }
 
 .back-to-top {
   display: none;
