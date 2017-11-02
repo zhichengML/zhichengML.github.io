@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ReadNote-Machine-Learning-Foundation," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zhichengMLE" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="How can Machine Learn Better? - Regularization1. Regularized Hypothesis Set正则化的主要思想：将假设函数从高次多项式的数降低到低次，即把复杂的模型变成简单模型。如图一所示的表示高次多项式函数，明显产生了过拟合现象，而左图的表示使用正则化后的低次函数。并且从图中的下方的Hypothesis Set的圈中可以看出，高次的多项式会">
+<meta name="keywords" content="ReadNote-Machine-Learning-Foundation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12.How can Machine Learn Better? - Regularization">
+<meta property="og:url" content="https://zhichengMLE.github.io/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/index.html">
+<meta property="og:site_name" content="zhichengMLE">
+<meta property="og:description" content="How can Machine Learn Better? - Regularization1. Regularized Hypothesis Set正则化的主要思想：将假设函数从高次多项式的数降低到低次，即把复杂的模型变成简单模型。如图一所示的表示高次多项式函数，明显产生了过拟合现象，而左图的表示使用正则化后的低次函数。并且从图中的下方的Hypothesis Set的圈中可以看出，高次的多项式会">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/1ef39e622b59906f5831d3493e000c306845a087/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-1%20Regularization%20Fit.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/097a94496bbb81ecd7927daf3b0a828b057929f6/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-2%20The%20Lagrange%20Multiplier.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/ebda6e4b5050786832ddb317e28aaa7807be465c/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-3%20Result%20of%20Weith%20Decay%20Regularization.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/50e614a04c16b422bc446eac1bca54f9306c630f/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-4%20Augmented%20Error%20and%20VC%20Bound.png">
+<meta property="og:updated_time" content="2017-11-02T07:36:57.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="12.How can Machine Learn Better? - Regularization">
+<meta name="twitter:description" content="How can Machine Learn Better? - Regularization1. Regularized Hypothesis Set正则化的主要思想：将假设函数从高次多项式的数降低到低次，即把复杂的模型变成简单模型。如图一所示的表示高次多项式函数，明显产生了过拟合现象，而左图的表示使用正则化后的低次函数。并且从图中的下方的Hypothesis Set的圈中可以看出，高次的多项式会">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/1ef39e622b59906f5831d3493e000c306845a087/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-1%20Regularization%20Fit.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhichengMLE.github.io/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/"/>
+
+
+
+
+
+  <title>12.How can Machine Learn Better? - Regularization | zhichengMLE</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?798a0c674f239fd096e136d6fae20262";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhichengMLE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhichengMLE.github.io/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhichengMLE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhichengMLE">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">12.How can Machine Learn Better? - Regularization</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-17T11:23:19+08:00">
+                2017-10-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-11-02T15:36:57+08:00">
+                2017-11-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReadNote/" itemprop="url" rel="index">
+                    <span itemprop="name">ReadNote</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/" class="leancloud_visitors" data-flag-title="12.How can Machine Learn Better? - Regularization">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2,017
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="How-can-Machine-Learn-Better-Regularization"><a href="#How-can-Machine-Learn-Better-Regularization" class="headerlink" title="How can Machine Learn Better? - Regularization"></a>How can Machine Learn Better? - Regularization</h1><h2 id="1-Regularized-Hypothesis-Set"><a href="#1-Regularized-Hypothesis-Set" class="headerlink" title="1. Regularized Hypothesis Set"></a>1. Regularized Hypothesis Set</h2><p>正则化的主要思想：将假设函数从高次多项式的数降低到低次，即把复杂的模型变成简单模型。如图一所示的表示高次多项式函数，明显产生了过拟合现象，而左图的表示使用正则化后的低次函数。并且从图中的下方的Hypothesis Set的圈中可以看出，高次的多项式会包含低次的多项式。所以在转换的过程，就是把模型从外圈降至内圈的过程。</p>
+<blockquote>
+<p>但是：Regularization 不适用于多个解的模型，因为在降阶的过程中面临着选择最适解</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/1ef39e622b59906f5831d3493e000c306845a087/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-1%20Regularization%20Fit.png" alt="Regularization Fit"></p>
+<center> 图一 Regularization Fit <sup>[1]</sup></center>
+
+
+<p>下面来讨论如何进行降阶：<br>1.首先我们在列出10次和2次的多项式，如公式（1）（2）所示。对比可以发现，其实 $H_2$ 可以看成是 $H_{10}$ 的3~10次项的系数为0，如公式（3）所示，其中 $s.t.$ 是subject to的意思，即约束条件</p>
+<script type="math/tex; mode=display">
+H_{10} = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_{10} x^{10}
+\tag{$1$}</script><script type="math/tex; mode=display">
+H_{2} = w_0 + w_1 x + w_2 x^2
+\tag{$2$}</script><script type="math/tex; mode=display">
+H_{2} =  w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_{10} x^{10} \quad s.t. w_3= w_4 = \dots = w_{10} =0
+\tag{$3$}</script><p>2.接着我们稍微放宽一下条件：我们不限定说一定要 3~10次多项式系数为0，我们只要要求满足有8项为0，即3项不为零（包括常数项），如公式（4）所示。这种Hypothesis称为 $H^{\prime}_2$。并且这个Hypothesis与 $H_2$ $H_{10}$ 的关系如公式（5）所示。显然，  $H^{\prime}_2$ 比 $H_2$ 更加的Flexible， 而 $H^{\prime}_2$ 比 $H_{10}$ 的复杂度更低。</p>
+<script type="math/tex; mode=display">
+H^{\prime}_{2} =  w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_{10} x^{10} \quad s.t. \sum\limits_{q=0}^{10}(w_q \neq 0) \leq 3
+\tag{$4$}</script><script type="math/tex; mode=display">
+H_2 \subset  H^{\prime}_{2} \subset H_{10}
+\tag{$5$}</script><p>3.但是这个Hypothesis $H^{\prime}_2$ 的求解也是一个NP-Hard问题。所以我们继续寻找容易求解的宽松情况。如公式（6）所示，这种Hypothesis我们称为 $H(C)$ 其中C为常数，H(C)称为regularized hypothesis set。这个方程的限定条件是让 权重的平方和小于C，当C增大时，限定的条件越宽松。如果C接近于无穷大，那么就和 $H_{10}$ 没什么区别了,如公式（7）所示</p>
+<script type="math/tex; mode=display">
+H^{\prime}_{2} =  w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_{10} x^{10} \quad s.t. \sum\limits_{q=0}^{10} w_q^2 = ||w||^2 \leq C
+\tag{$6$}</script><script type="math/tex; mode=display">
+H(0) \subset H(1.126) \subset \dots \subset H(1126) \subset \dots \subset H(\infty) \subset H(10)
+\tag{$7$}</script><p>这种形式的限定条件是可以进行求解的，我们把求解的满足限定条件的权重w记为wREG。接下来就要探讨如何求解wREG。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><br><br></h2><h2 id="2-Weight-Decay-Regularization"><a href="#2-Weight-Decay-Regularization" class="headerlink" title="2. Weight Decay Regularization"></a>2. Weight Decay Regularization</h2><p>1.首先我们为了表示方便，把公式（6）做一定的调整：写成向量矩阵的形式，得到公式（8）</p>
+<script type="math/tex; mode=display">
+\min\limits_{w \in R^{Q+1}} E_{in}(w) = \frac{1}{N} \underbrace{\sum\limits_{n=1}{N} (w^Tz_n - y_n) ^ 2}_{(Zw-y)^T(Zw-y)} \quad
+
+s.t. \underbrace{\sum\limits_{q=0}^Q w_q^2}_{w^Tw} \leq C
+\tag{$8$}</script><p>2.我们的目的是计算 $E_{in}(w)$ 的最小值，其中限定条件是 $||w2|| \leq C$ 如图二所示，这个限定条件从几何角度上的意思是，权重w被限定在半径为 $\sqrt C$ 的圆内（红色的圆），而球外的w都不符合要求，即便它是靠近 $E_{in}(w)$ 梯度为零的w。</p>
+<p>实际的变化方向如蓝色的向量 $- \nabla E_{in}$ 所示，其中红色向量normal 限定了切线的法向量的方向，而绿色的向量 $W_{lin}$ 就是我们需要想方法找到让他最短的时刻。</p>
+<p>显然，红色和绿色的向量其实就是蓝色向量的相互垂直的分向量，由高中的数学知识，我们知道，当蓝色向量越接近于红色的向量，那么绿色的向量长度越小，即如公式（9）所示</p>
+<script type="math/tex; mode=display">
+- \nabla E_{in}(W_{REG}) \propto W_{REG}
+\tag{$9$}</script><p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/097a94496bbb81ecd7927daf3b0a828b057929f6/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-2%20The%20Lagrange%20Multiplier.png" alt="The Lagrange Multiplier"></p>
+<center> 图二 The Lagrange Multiplier <sup>[2]</sup></center>
+
+
+<p>3.然后我们队公式（9）加入拉格朗日算子 $\lambda$ ， 进行调整得到公式（10）</p>
+<script type="math/tex; mode=display">
+\begin{align}
+                   & - \nabla E_{in}(W_{REG}) \propto W_{REG} \\
+\Longrightarrow    & - \nabla E_{in}(W_{REG}) \propto \frac{2 \lambda}{N} W_{REG} \\
+\Longrightarrow    & - \nabla E_{in}(W_{REG}) + \frac{2 \lambda}{N} W_{REG} = 0 \\
+\Longrightarrow    & \frac{2}{N} (Z^TZW_{REG} - Z^Ty) + \frac{2 \lambda}{N} W_{REG} = 0 \\
+\Longrightarrow    & W_{REG} = (Z^T Z + \lambda I )^{-1} Z^Ty
+\end{align}
+\tag{$10$}</script><p>上式中包含了求逆矩阵的过程，因为 $Z^TZ$ 是半正定矩阵，如果 $\lambda$ 大于零，那么 $Z^T Z+\lambda I$ 一定是正定矩阵，即一定可逆。统计学上把这叫做ridge regression(岭回归)</p>
+<p>4.如果把公式（10）的反过来求积分，我们可以得到公式（11）。该表达式称为增广错误（augmented error）用 $E_{aug}(w)$ 表示，其中 $w^T w$ 为正则化项（regularizer）。之所以叫做增广错误，是因为比传统的多了一正则化项。</p>
+<script type="math/tex; mode=display">
+\DeclareMathOperator*{\argmin}{argmin}
+\begin{align}
+                   & - \nabla E_{in}(W_{REG}) \propto W_{REG} \\
+\Longrightarrow    & E_{aug}(w) =E_{in} + \frac{\lambda}{N} w^Tw \\
+\Longrightarrow    & W_{REG} = \argmin\limits_w E_{in}(w) + \frac{\lambda}{N} w^Tw
+\end{align}
+\tag{$11$}</script><p>所以我们只需要调整不同的 $\lambda$ 的值就可以对模型复杂度进行一定的调整，如图三所示。</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/ebda6e4b5050786832ddb317e28aaa7807be465c/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-3%20Result%20of%20Weith%20Decay%20Regularization.png" alt="Result of Weith Decay Regularization"></p>
+<center> 图三 Result of Weith Decay Regularization <sup>[2]</sup></center>
+
+<p>从图中可以看出，当λ=0时，发生了过拟合；当λ=0.0001时，拟合的效果很好；当λ=0.01和λ=1时，发生了欠拟合。我们可以把λ看成是一种penality，即对hypothesis复杂度的惩罚，λ越大，w就越小，对应于C值越小，即这种惩罚越大，拟合曲线就会越平滑，高阶项就会削弱，容易发生欠拟合。λ一般取比较小的值就能达到良好的拟合效果，过大过小都有问题，但究竟取什么值，要根据具体训练数据和模型进行分析与调试。</p>
+<p>这种regularization不仅可以用在多项式的hypothesis中，还可以应用在logistic regression等其他hypothesis中，都可以达到防止过拟合的效果。</p>
+<p>但是这种方法有一个问题：我们目前讨论的多项式是形如x,x2,x3,⋯,xn的形式，若x的范围限定在[-1,1]之间，那么可能导致 $x_n$ 相对于低阶的值要小得多，则其对于的w非常大，相当于要给高阶项设置很大的惩罚。 也就是说我们无论让每个w的元素设定不同的 $\lambda$ ， 从而如果x的范围很大的话，那么会使得部分数据很小。</p>
+<blockquote>
+<p>克服这个问题的方法是用Legendre Polynomials代替x,x2,x3,⋯,xn这种形式，Legendre Polynomials各项之间是正交的，用它进行多项式拟合的效果更好。</p>
+</blockquote>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><br><br></h2><h2 id="3-Regularization-and-VC-Theory"><a href="#3-Regularization-and-VC-Theory" class="headerlink" title="3. Regularization and VC Theory"></a>3. Regularization and VC Theory</h2><p>本节介绍正则化与VC理论的关系。即从VC理论的角度说明为什么正则化的效果好</p>
+<blockquote>
+<p>我们将从2个角度来讨论这个问题： 1) 误差方程 2） VC Dimension</p>
+</blockquote>
+<p>1.首先对比 Augmented Error 和 VC Bound， 如图四所示</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/50e614a04c16b422bc446eac1bca54f9306c630f/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter12-4%20Augmented%20Error%20and%20VC%20Bound.png" alt="Augmented Error and VC Bound"></p>
+<center> 图四 Augmented Error and VC Bound <sup>[3]</sup></center>
+
+<p>根据Augmented Error和VC Bound的表达式，$\Omega (w)$ 包含于 $Ω(H)$ 之内，所以，$E_{aug}(w)$ 比 $E_{in}$ 更接近于 $E_{out}(w)$</p>
+<p>2.从VC Dimension的角度。根据VC Dimension理论，整个hypothesis set的 $d_{vc}=d˘+1$ ，这是因为所有的w都考虑了，没有任何限制条件。而引入限定条件的 $d_{vc}(H(C))=d_{EFF}(H,A)$ ，即有效的VC Dimension。很显然，$d_{vc}$ 比较大，因为它代表了整个hypothesis set，但是 $d_{EFF}(H,A)$ 比较小，因为由于regularized的影响，限定了w只取一小部分。</p>
+<p>所以当 $\lambda = 0$的时候，所有的w都没有收到惩罚，所以都考虑了，此时的 $d_{vc}$ 比较大，容易产生overfitting，当 $\lambda &gt; 0$ 的时候， 部分w的乘以0而被放弃考虑，所以  $d_{vc}$ 比较小，模型的复杂度就降下来了，就解决了overfitting的问题。当然如果 $\lambda$ 太大，使得过多的w被舍弃，那么就会出现 underfitting的情况了</p>
+<h2 id="-2"><a href="#-2" class="headerlink" title=""></a><br><br></h2><h2 id="4-General-Regularizers"><a href="#4-General-Regularizers" class="headerlink" title="4. General Regularizers"></a>4. General Regularizers</h2><p>Regularizers主要有 L0, L1 和L2，前面用到的是 L2的Regularizer<br>关于范数的概念老师课上没有讲的很明白，可以参考这两篇博客，后续我也会写关于范数的博客</p>
+<blockquote>
+<p>@ TODO L0、L1与L2范数</p>
+</blockquote>
+<p><a href="http://blog.csdn.net/zouxy09/article/details/24971995" target="_blank" rel="external">机器学习中的范数规则化之（一）L0、L1与L2范数</a></p>
+<p><a href="http://blog.csdn.net/zouxy09/article/details/24972869" target="_blank" rel="external">机器学习中的范数规则化之（二）核范数与规则项参数选择</a></p>
+<h2 id="-3"><a href="#-3" class="headerlink" title=""></a><br><br></h2><h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><ol>
+<li>这一节首先介绍了Regularization：在Hypothesis Set的基础上 加入 Regularizer 作为 Penality。使得最终结果中的部分w被惩罚掉而不被考虑，从而实现了降低模型复杂度的功能。</li>
+<li>接着我们讨论了为什么 Regularization 能让模型复杂度降低，并且模型的泛化能力更强</li>
+<li>最后我们讨论了常用的范数:L0 L1 L2 范数</li>
+</ol>
+<h2 id="-4"><a href="#-4" class="headerlink" title=""></a><br><br></h2><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1] 机器学习基石(台湾大学-林轩田)\14\14 - 1 - Regularized Hypothesis Set (19-16)</p>
+<p>[2] 机器学习基石(台湾大学-林轩田)\14\14 - 2 - Weight Decay Regularization (24-08)</p>
+<p>[3] 机器学习基石(台湾大学-林轩田)\14\14 - 3 - Regularization and VC Theory (08-15)</p>
+<h2 id="-5"><a href="#-5" class="headerlink" title=""></a><br><br></h2>
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------The <i class="fa fa-paw"></i> END-------------</div>
+    
+</div>
+      
+    </div>
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>Title:</span><a href="/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/">12.How can Machine Learn Better? - Regularization</a></p>
+  <p><span>Author:</span><a href="/" title="Goto zhichengMLE ' Personal Blog">zhichengMLE</a></p>
+  <p><span>Posted:</span>2017-10-17 - 11:10</p>
+  <p><span>Updated:</span>2017-11-02 - 15:11</p>
+  <p><span>URL:</span><a href="/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/" title="12.How can Machine Learn Better? - Regularization">https://zhichengMLE.github.io/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/</a>
+    <span class="copy-path"  title="Click to copy"><i class="fa fa-clipboard" data-clipboard-text="https://zhichengMLE.github.io/2017/10/17/2017-10-17-12.How can Machine Learn Better - Regularization/"  aria-label="Copied！"></i></span>
+  </p>
+  <p><span>CC:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">(CC BY-NC-ND 4.0)</a> Please quote this as reference upon reproduction of this article.</p>  
+</div>
+
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: 'Copied',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+    </div>
+    
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate to help shape the future of this site!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="zhichengMLE WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zhichengMLE Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags-edited">
+          
+            <a href="/tags/ReadNote-Machine-Learning-Foundation/" rel="tag"><i class="fa fa-tag"></i> ReadNote-Machine-Learning-Foundation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/16/2017-10-16-11.How can Machine Learn Better - Overfitting and Solution/" rel="next" title="11.How can Machine Learn Better? - Overfitting and Solution">
+                <i class="fa fa-chevron-left"></i> 11.How can Machine Learn Better? - Overfitting and Solution
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/18/2017-10-18-13.How can Machine Learn Better - Validation/" rel="prev" title="13.How can Machine Learn Better? - Validation">
+                13.How can Machine Learn Better? - Validation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTYzNi84MjAw"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="zhichengMLE" />
+            
+              <p class="site-author-name" itemprop="name">zhichengMLE</p>
+              <p class="site-description motion-element" itemprop="description">“We must learn to tailor our concepts to fit reality, instead of trying to stuff reality into our concepts.” — Victor Daniels</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhichengML" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jason--ding@outlook.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.linkedin.com/in/zhicheng-ding-a80595b3/" target="_blank" title="Linkedin">
+                    
+                      <i class="fa fa-fw fa-linkedin"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="google前端开发基础" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/jasonwoolf" title="myCSDN" target="_blank">myCSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/jasonwoolf" title="To Be Added" target="_blank">To Be Added</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-can-Machine-Learn-Better-Regularization"><span class="nav-text">How can Machine Learn Better? - Regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Regularized-Hypothesis-Set"><span class="nav-text">1. Regularized Hypothesis Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Weight-Decay-Regularization"><span class="nav-text">2. Weight Decay Regularization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Regularization-and-VC-Theory"><span class="nav-text">3. Regularization and VC Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-2"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-General-Regularizers"><span class="nav-text">4. General Regularizers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-3"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#-4"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#-5"><span class="nav-text"></span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhichengMLE</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">31.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user-md"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("VfnnYj3BiqUUGUxor6pFkJux-gzGzoHsz", "3eESFKTaBa4P4KO6k6cm9CRI");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+</body>
+</html>
