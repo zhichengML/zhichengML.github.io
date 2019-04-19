@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="rzzVuOTIU7jiPfFE-TiS2qmMwMYzGfeY0Go7XkNmoQo">
+
+
+
+  <meta name="msvalidate.01" content="38DC0B52AC1BE8086F0ADFA5A73BD6F2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="How can Machine Learn? - Linear Model for Classification 主要讨论 Linear Classification, Linear Reegression, Logistic Regression 在分类问题上的优劣对比，并拓展到多元分类  1. Linear Models for Binary Classification1) Analyzin">
+<meta name="keywords" content="ReadNote-Machine-Learning-Foundation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9.How can Machine Learn? - Linear Model for Classification">
+<meta property="og:url" content="https://zhichengMLE.github.io/2017/10/14/ReadNote-Machine Learning Foudantion -NTU/2017-10-14-9.How can Machine Learn - Linear Model for Classification/index.html">
+<meta property="og:site_name" content="zhichengMLE">
+<meta property="og:description" content="How can Machine Learn? - Linear Model for Classification 主要讨论 Linear Classification, Linear Reegression, Logistic Regression 在分类问题上的优劣对比，并拓展到多元分类  1. Linear Models for Binary Classification1) Analyzin">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/0e01f9a531b829ec48a4f3e9970fc737f62f9b56/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-1%20Linear%20Models.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/f0bb56f85acd2e6c8500017ff01411c065136237/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-2%20Error%20Function%20Revisit.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/89a29e7078c423404f64048c7ebbef7c33c6f534/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-3%20Visualizing%20Error%20Functions.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/0277ba5bccfbf510f13974f587508dbebd21bea0/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-4%20Visualizing%20Error%20Functions-scaled%20ce.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/bcdd07e44255ec22600bb992b5928f177522630e/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-5%20Multiclass%20Classification.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/3d035b4130569658df8474312c2d45e632fdfc79/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-6%20Multiclass%20Classification%20Soft%20Classifiers.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/378a48ebf7a50d47599da2296c24c90e68ebd10c/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-7%20OVA%20Decomposition.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/15e07a2ab76b1bdb9f632949833e71c801f1371e/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-8%20OVO.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/0bd54f49a461dcdf1bf0b3f50c11ebdb6401472a/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-9%20OVO%20Decomposition.png">
+<meta property="og:updated_time" content="2018-10-27T04:30:42.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9.How can Machine Learn? - Linear Model for Classification">
+<meta name="twitter:description" content="How can Machine Learn? - Linear Model for Classification 主要讨论 Linear Classification, Linear Reegression, Logistic Regression 在分类问题上的优劣对比，并拓展到多元分类  1. Linear Models for Binary Classification1) Analyzin">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/0e01f9a531b829ec48a4f3e9970fc737f62f9b56/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-1%20Linear%20Models.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zhichengMLE" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zhichengMLE.github.io/2017/10/14/ReadNote-Machine Learning Foudantion -NTU/2017-10-14-9.How can Machine Learn - Linear Model for Classification/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>9.How can Machine Learn? - Linear Model for Classification | zhichengMLE</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109130641-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109130641-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?798a0c674f239fd096e136d6fae20262";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhichengMLE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-projects">
+    <a href="/projects" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-star"></i> <br>Projects</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">10</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">44</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhichengMLE.github.io/2017/10/14/ReadNote-Machine Learning Foudantion -NTU/2017-10-14-9.How can Machine Learn - Linear Model for Classification/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhichengMLE">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhichengMLE">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">9.How can Machine Learn? - Linear Model for Classification
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-14T00:23:19-04:00">2017-10-14</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ReadNote/" itemprop="url" rel="index"><span itemprop="name">ReadNote</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="How-can-Machine-Learn-Linear-Model-for-Classification"><a href="#How-can-Machine-Learn-Linear-Model-for-Classification" class="headerlink" title="How can Machine Learn? - Linear Model for Classification"></a>How can Machine Learn? - Linear Model for Classification</h1><blockquote>
+<p>主要讨论 Linear Classification, Linear Reegression, Logistic Regression 在分类问题上的优劣对比，并拓展到多元分类</p>
+</blockquote>
+<h2 id="1-Linear-Models-for-Binary-Classification"><a href="#1-Linear-Models-for-Binary-Classification" class="headerlink" title="1. Linear Models for Binary Classification"></a>1. Linear Models for Binary Classification</h2><h3 id="1-Analyzing-of-Three-Linear-Models"><a href="#1-Analyzing-of-Three-Linear-Models" class="headerlink" title="1) Analyzing of Three Linear Models"></a>1) Analyzing of Three Linear Models</h3><p>我们目前学习了Classification, Linear Reegression, Logistic Regression， 这三个模型有很多类似的地方。<br>总结如图一，这里引入了s(score)作为得分，$s=w^Tx$</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/0e01f9a531b829ec48a4f3e9970fc737f62f9b56/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-1%20Linear%20Models.png" alt="Linear Models Revisit"></p>
+<center> 图一 Linear Models Revisit <sup>[1]</sup></center>
+
+<p>从图中可以看出，Linear Classification的求解是NP-hard问题，其他两个方法都容易求解。并且可以看到他们的Hypothesis 都与 s 有关。所以可以利用这两种模型的算法近似求得二分类问题的最优权值w</p>
+<h3 id="2-Error-Functions-Comparison"><a href="#2-Error-Functions-Comparison" class="headerlink" title="2) Error Functions Comparison"></a>2) Error Functions Comparison</h3><p>1.首先对比3种方法的误差方程，如图二所示</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/f0bb56f85acd2e6c8500017ff01411c065136237/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-2%20Error%20Function%20Revisit.png" alt="Error Functions Revisit"></p>
+<center> 图二 Error Functions Revisit <sup>[1]</sup></center>
+
+
+
+<p>2.根据图二的错误函数得到图三的关系图。</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/89a29e7078c423404f64048c7ebbef7c33c6f534/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-3%20Visualizing%20Error%20Functions.png" alt="Visualizing Error Functions"></p>
+<center> 图三 Visualizing Error Functions <sup>[1]</sup></center>
+
+<p>从图三，我们可以得到以下几个结论：</p>
+<ol>
+<li>对于 $err_{0/1}$， 在 $ys &gt; 0$ 和 $ys &lt; 0$ 的值相差很大</li>
+<li>$err_{CE}$ 随着 ys的增大而减小，而且无线接近于0，在 $ys &gt; 0$ 的情况下，逐渐毕竟于 $err_{0/1}$</li>
+<li>$err_{SQR}$ 是一个凹函数，在 $ys = 1$ 的情况下，与 $err_{0/1}$ 相等</li>
+<li>$err_{0/1}$  始终小于 $err_{SQR}$， 绝大部分情况下小于 $err_{CE}$</li>
+<li>虽然$err_{0/1}$  始终小于 $err_{SQR}$， 但是两者的差距较大</li>
+<li>虽然$err_{0/1}$  不是全部情况下小于 $err_{CE}$，但是稍微做调整，可以实现 $err_{0/1}$  始终小于 $err_{CE}$ ，并且这两者的曲线接近，所以我们下面将想办法采用这种方式。</li>
+</ol>
+<p>err为了让 $err_{0/1}$  也始终小于 $err_{CE}$ ，我们稍微做一些调整, 得到scaled CE $err_{SCE}$，如图四所示，这里只是给  $err_{CE}$ 的表达式把对数从 $log_e$ 换成 $log_2$。即从公式（1）换成公式（2）</p>
+<script type="math/tex; mode=display">
+err_{CE} = err(w,x,y) = err_{CE}(s,y) = ln(1+exp(-yw^Tx)) = ln(1+exp(-ys))
+\tag{1}</script><script type="math/tex; mode=display">
+err_{SCE} = \frac{1}{ln2} err_{CE} = log_2(1+exp(-ys))
+\tag{2}</script><p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/0277ba5bccfbf510f13974f587508dbebd21bea0/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-4%20Visualizing%20Error%20Functions-scaled%20ce.png" alt="Visualizing Error Functions with Scaled CE"></p>
+<center> 图四 Visualizing Error Functions with Scaled CE <sup>[1]</sup></center>
+
+<p>从图四中，我们可以发现，$err_{0/1}$  始终小于 $err_{SQR}$ 和 $err_{CE}$，如公式（3）所示，那么在数据量足够大的情况下，$E_{out}$ 也有类似的情况，如公式（4）所示。再接着，由于之前VC Bound的结论，我们可以得到公式（5）， 所以接下来我们就可以Logistic Regrssion的方法去解决Linear Classification的问题了</p>
+<script type="math/tex; mode=display">
+E_{in}^{0/1}(w) \leq E_{in}^{SCE}(w) = \frac{1}{ln2} E_{in}^{CE}(w)
+\tag{3}</script><script type="math/tex; mode=display">
+E_{out}^{0/1}(w) \leq E_{out}^{SCE}(w) = \frac{1}{ln2} E_{out}^{CE}(w)
+\tag{4}</script><script type="math/tex; mode=display">
+E_{in}^{0/1}(w) \leq E_{in}^{0/1}(w) + \Omega ^{0/1}  \leq E_{out}^{SCE}(w)  + \Omega ^{0/1} = \frac{1}{ln2} E_{out}^{CE}(w)  + \Omega ^{0/1}
+\tag{5}</script><p>算法流程一般是在输出空间{-1, +1} 的情况下，通过线性回归和logistic回归相对应的求解方法求出最优的权值 $W_{REG}$；<br>将求得的代入公式sign，得到最优假设函数。</p>
+<h2 id><a href="#" class="headerlink" title></a><br><br></h2><h2 id="2-Multiclass-via-Logistic-Regression-OVA-Algorithm"><a href="#2-Multiclass-via-Logistic-Regression-OVA-Algorithm" class="headerlink" title="2. Multiclass via Logistic Regression - OVA Algorithm"></a>2. Multiclass via Logistic Regression - OVA Algorithm</h2><p>实际生活中，也有很多的场合需要对多种情况进行分类：比如区分病人患了哪种类型的疾病；区分不同种类的蔬菜等。</p>
+<p>求解多类别问题可以采用二元分类的思想，将多类问题分解多多个二元分类问题，然后再分别求权值，最终分到最高权值的类别去。</p>
+<p>如图五的多类别问题，我们可以分解成图六的多个二元分类问题去求解，最终中间的公共区域，我们通过公式（6）求得最大的概率，哪一类的概率最大，就把这个点归于哪一类。</p>
+<blockquote>
+<p>要注意使用软分类（因为直接分类的话中间的公共区域无法区分）</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\DeclareMathOperator*{\argmax}{argmax}
+\begin{equation}
+g(x) = argmax_{k ∈ y} (\theta w^T_{[k]} x)
+\end{equation}
+\tag{6}</script><p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/bcdd07e44255ec22600bb992b5928f177522630e/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-5%20Multiclass%20Classification.png" alt="Multiclass Classification"></p>
+<center> 图五 Multiclass Classification <sup>[2]</sup></center>
+
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/3d035b4130569658df8474312c2d45e632fdfc79/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-6%20Multiclass%20Classification%20Soft%20Classifiers.png" alt="Multiclass Classification Soft Classifiers"></p>
+<center> 图六 Multiclass Classification Soft Classifiers <sup>[2]</sup></center>
+
+<p>这种算法称作一对多（One-Versus-All），简称为OVA，表示一个类别对其他所有类别。</p>
+<p>算法的流程如图七所示</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/378a48ebf7a50d47599da2296c24c90e68ebd10c/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-7%20OVA%20Decomposition.png" alt="OVA Decomposition"></p>
+<center> 图七 OVA Decomposition <sup>[2]</sup></center>
+
+<p>该算法的优点是简单有效，易于类似于logistic函数的二元分类问题扩展成多类别分类；缺点是当类别特别多时，产生了不平衡的现象（如类别特别多，则+1的数据量就很少，大部分都是-1，数据量严重不平衡）。</p>
+<h2 id="-1"><a href="#-1" class="headerlink" title></a><br><br></h2><h2 id="3-Multiclass-via-Binary-Classification-OVO-Algorithm"><a href="#3-Multiclass-via-Binary-Classification-OVO-Algorithm" class="headerlink" title="3. Multiclass via Binary Classification - OVO Algorithm"></a>3. Multiclass via Binary Classification - OVO Algorithm</h2><p>上一节的最后提到OVA的方式在类别非常多的情况下，出现了训练数据严重失衡的现象，于是有另外一种方法 一对一(One-Versus-One)算法，简称OVO。同样对图五的问题做多元分类，但是这次我们一次单独考虑2种类型的点，直到两两都进行过分类（分类次数就是组合数 $C$， 例子中就是 $C_4^2 = 6$）。如图八所示。</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/15e07a2ab76b1bdb9f632949833e71c801f1371e/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-8%20OVO.png" alt="OVO"></p>
+<center> 图八 OVO <sup>[3]</sup></center>
+
+
+<p>算法的流程如图九所示</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/0bd54f49a461dcdf1bf0b3f50c11ebdb6401472a/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter9-9%20OVO%20Decomposition.png" alt="OVO Decomposition"></p>
+<center> 图九 OVO <sup>[3]</sup></center>
+
+<p>其优点是简单有效，在做两两对比时，每次使用的不是全部训练数据，而是仅属于当前两类的训练数据，能将所有类似于二元分类的算法扩展成多元分类问题； 缺点是对比次数是 O(N^2) 即：$C_k^2$。 也就是说要分的类别越多，就需要花费更多的存储空间和运算时间。</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><ol>
+<li>首先我们对比了目前学到的Linear Models，由于Linear Classification的NP Hard求解问题，我们分析，最终发现可以使用Logistic Regression 的方法进行求解</li>
+<li>接着我们讨论了Multiclass Classification的 OVA 算法，但是该算法存在问题：类型很多的时候，会出现数据不平衡的问题</li>
+<li>最后在OVA的基础上，我们继续讨论了OVO算法，该算法克服了OVA数据不平衡的问题。但是该算法的缺点是存储空间和运算时间都比较大</li>
+</ol>
+<h2 id="-2"><a href="#-2" class="headerlink" title></a><br><br></h2><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1] 机器学习基石(台湾大学-林轩田)\11\11 - 1 - Linear Models for Binary Classification (21-35)</p>
+<p>[2] 机器学习基石(台湾大学-林轩田)\11\11 - 3 - Multiclass via Logistic Regression (14-18)</p>
+<p>[3] 机器学习基石(台湾大学-林轩田)\11\11 - 4 - Multiclass via Binary Classification (11-35)</p>
+<h2 id="-3"><a href="#-3" class="headerlink" title></a><br><br></h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author: </strong>zhichengMLE</li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://zhichengMLE.github.io/2017/10/14/ReadNote-Machine Learning Foudantion -NTU/2017-10-14-9.How can Machine Learn - Linear Model for Classification/" title="9.How can Machine Learn? - Linear Model for Classification">https://zhichengMLE.github.io/2017/10/14/ReadNote-Machine Learning Foudantion -NTU/2017-10-14-9.How can Machine Learn - Linear Model for Classification/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReadNote-Machine-Learning-Foundation/" rel="tag"># ReadNote-Machine-Learning-Foundation</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/13/ReadNote-Machine Learning Foudantion -NTU/2017-10-13-8.How can Machine Learn - Logistic Regression/" rel="next" title="8.How can Machine Learn? - Logistic Regression">
+                <i class="fa fa-chevron-left"></i> 8.How can Machine Learn? - Logistic Regression
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/15/ReadNote-Machine Learning Foudantion -NTU/2017-10-15-10.How can Machine Learn - Nonlinear Transformation/" rel="prev" title="10.How can Machine Learn? - Nonlinear Transformation">
+                10.How can Machine Learn? - Nonlinear Transformation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59fadb7b45993008" async="async"></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="zhichengMLE">
+            
+              <p class="site-author-name" itemprop="name">zhichengMLE</p>
+              <p class="site-description motion-element" itemprop="description">I am interested in Computer Vision and Natural Language Processing. Currently working on understanding the image via NLP and use CV to reconstruct the 3D image.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhichengMLE" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jason--ding@outlook.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.linkedin.com/in/zhicheng-ding-a80595b3/" target="_blank" title="Linkedin" rel="external nofollow"><i class="fa fa-fw fa-linkedin"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/u/0/107804403806511724071" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/jJasonDean" target="_blank" title="FB Page" rel="external nofollow"><i class="fa fa-fw fa-facebook"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/5357323/zhichengmle" target="_blank" title="StackOverflow" rel="external nofollow"><i class="fa fa-fw fa-stack-overflow"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/jasonwoolf" title="Place Holder" target="_blank">Place Holder</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-can-Machine-Learn-Linear-Model-for-Classification"><span class="nav-text">How can Machine Learn? - Linear Model for Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Linear-Models-for-Binary-Classification"><span class="nav-text">1. Linear Models for Binary Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Analyzing-of-Three-Linear-Models"><span class="nav-text">1) Analyzing of Three Linear Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Error-Functions-Comparison"><span class="nav-text">2) Error Functions Comparison</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Multiclass-via-Logistic-Regression-OVA-Algorithm"><span class="nav-text">2. Multiclass via Logistic Regression - OVA Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Multiclass-via-Binary-Classification-OVO-Algorithm"><span class="nav-text">3. Multiclass via Binary Classification - OVO Algorithm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#-2"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#-3"><span class="nav-text"></span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhichengMLE</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 7813,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.1.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.1.0"></script>
+
+
+  
+
+  
+
+</body>
+</html>

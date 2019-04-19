@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>zhichengMLE</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://zhichengMLE.github.io/"/>
+  <updated>2018-12-04T14:07:54.425Z</updated>
+  <id>https://zhichengMLE.github.io/</id>
+  
+  <author>
+    <name>zhichengMLE</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL Connection (MACOS)</title>
+    <link href="https://zhichengMLE.github.io/2018/10/27/MySQL/2018-10-27-MySQL_connection/"/>
+    <id>https://zhichengMLE.github.io/2018/10/27/MySQL/2018-10-27-MySQL_connection/</id>
+    <published>2018-10-27T04:23:19.000Z</published>
+    <updated>2018-12-04T14:07:54.425Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Problem-Trying-to-use-nodejs-waterline-to-connect-MySQL-locally-but-got-BAD-CONNECTION-error&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://zhichengMLE.github.io/categories/MySQL/"/>
+    
+    
+      <category term="MySQL" scheme="https://zhichengMLE.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git Bash Save Credential - Push without Entering Usename and Password Every Time (git bash in windows)</title>
+    <link href="https://zhichengMLE.github.io/2018/08/23/Others/Git/2018-08-23-Git%20Bash%20Save%20Credential%20-%20Push%20without%20Entering%20Usename%20and%20Password%20Every%20Time%20(git%20bash%20in%20windows)/"/>
+    <id>https://zhichengMLE.github.io/2018/08/23/Others/Git/2018-08-23-Git Bash Save Credential - Push without Entering Usename and Password Every Time (git bash in windows)/</id>
+    <published>2018-08-23T04:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In Git Bash window, run the following command&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="https://zhichengMLE.github.io/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://zhichengMLE.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Workflow of Resolve Comflicts</title>
+    <link href="https://zhichengMLE.github.io/2018/08/20/Others/Git/2018-08-21-Workflow%20of%20Resolve%20Comflicts/"/>
+    <id>https://zhichengMLE.github.io/2018/08/20/Others/Git/2018-08-21-Workflow of Resolve Comflicts/</id>
+    <published>2018-08-21T03:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Get up-to-date commits&lt;/p&gt;
+ &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="https://zhichengMLE.github.io/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://zhichengMLE.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Helpful Visualization Tutorial</title>
+    <link href="https://zhichengMLE.github.io/2018/08/17/Visualization/2018-08-17-helpful_visualization_tutorial/"/>
+    <id>https://zhichengMLE.github.io/2018/08/17/Visualization/2018-08-17-helpful_visualization_tutorial/</id>
+    <published>2018-08-17T05:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.956Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://www.safaribooksonline.com/library/view/python-data-science/9781491912126/ch04.html&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Visualization" scheme="https://zhichengMLE.github.io/categories/Visualization/"/>
+    
+    
+      <category term="Visualization" scheme="https://zhichengMLE.github.io/tags/Visualization/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Maximum Likelihood Estimation</title>
+    <link href="https://zhichengMLE.github.io/2017/12/12/Algorithm/Optimize%20Algorithm/2017-12-12-Maximum%20Likelihood%20Estimation/"/>
+    <id>https://zhichengMLE.github.io/2017/12/12/Algorithm/Optimize Algorithm/2017-12-12-Maximum Likelihood Estimation/</id>
+    <published>2017-12-12T13:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.949Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Maximum-Likelihood-Estimation&quot;&gt;&lt;a href=&quot;#Maximum-Likelihood-Estimation&quot; class=&quot;headerlink&quot; title=&quot;Maximum Likelihood
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Algorithm/"/>
+    
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/tags/Machine-Learning-Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gradient Descent</title>
+    <link href="https://zhichengMLE.github.io/2017/12/12/Algorithm/Optimize%20Algorithm/2017-12-12-Gradient%20Descent/"/>
+    <id>https://zhichengMLE.github.io/2017/12/12/Algorithm/Optimize Algorithm/2017-12-12-Gradient Descent/</id>
+    <published>2017-12-12T09:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.949Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Gradient-Descent&quot;&gt;&lt;a href=&quot;#Gradient-Descent&quot; class=&quot;headerlink&quot; title=&quot;Gradient Descent&quot;&gt;&lt;/a&gt;Gradient
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Algorithm/"/>
+    
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/tags/Machine-Learning-Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mini-Batch Gradient Descent</title>
+    <link href="https://zhichengMLE.github.io/2017/12/12/Algorithm/Optimize%20Algorithm/2017-12-12-Mini-Batch%20Gradient%20Descent/"/>
+    <id>https://zhichengMLE.github.io/2017/12/12/Algorithm/Optimize Algorithm/2017-12-12-Mini-Batch Gradient Descent/</id>
+    <published>2017-12-12T05:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.949Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Mini-Batch-Gradient-Descent&quot;&gt;&lt;a href=&quot;#Mini-Batch-Gradient-Descent&quot; class=&quot;headerlink&quot; title=&quot;Mini-Batch Gradient
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Algorithm/"/>
+    
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/tags/Machine-Learning-Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Stochastic Gradient Descent</title>
+    <link href="https://zhichengMLE.github.io/2017/12/11/Algorithm/Optimize%20Algorithm/2017-12-11-Stochastic%20Gradient%20Descent/"/>
+    <id>https://zhichengMLE.github.io/2017/12/11/Algorithm/Optimize Algorithm/2017-12-11-Stochastic Gradient Descent/</id>
+    <published>2017-12-11T07:25:19.000Z</published>
+    <updated>2018-10-27T04:30:42.948Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Stochastic-Gradient-Descent&quot;&gt;&lt;a href=&quot;#Stochastic-Gradient-Descent&quot; class=&quot;headerlink&quot; title=&quot;Stochastic Gradient
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Algorithm/"/>
+    
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/tags/Machine-Learning-Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Latex 常见错误整理</title>
+    <link href="https://zhichengMLE.github.io/2017/12/04/Latex/2017-12-05-Latex%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%95%B4%E7%90%86/"/>
+    <id>https://zhichengMLE.github.io/2017/12/04/Latex/2017-12-05-Latex常见错误整理/</id>
+    <published>2017-12-05T04:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.949Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Latex-常见错误整理&quot;&gt;&lt;a href=&quot;#Latex-常见错误整理&quot; class=&quot;headerlink&quot; title=&quot;Latex 常见错误整理&quot;&gt;&lt;/a&gt;Latex 常见错误整理&lt;/h1&gt;&lt;h2 id=&quot;1-求导&quot;&gt;&lt;a href=&quot;#1-求导&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Latex" scheme="https://zhichengMLE.github.io/categories/Latex/"/>
+    
+    
+      <category term="Latex" scheme="https://zhichengMLE.github.io/tags/Latex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to Render the Hyperlink with Braces</title>
+    <link href="https://zhichengMLE.github.io/2017/12/02/Others/Markdown/2017-12-03-How%20to%20Render%20the%20Hyperlink%20with%20Braces/"/>
+    <id>https://zhichengMLE.github.io/2017/12/02/Others/Markdown/2017-12-03-How to Render the Hyperlink with Braces/</id>
+    <published>2017-12-03T03:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;How-to-Render-the-Hyperlink-with-Braces&quot;&gt;&lt;a href=&quot;#How-to-Render-the-Hyperlink-with-Braces&quot; class=&quot;headerlink&quot; title=&quot;How to Render
+        
+      
+    
+    </summary>
+    
+      <category term="Markdown" scheme="https://zhichengMLE.github.io/categories/Markdown/"/>
+    
+    
+      <category term="Markdown" scheme="https://zhichengMLE.github.io/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Concave and Convex Function</title>
+    <link href="https://zhichengMLE.github.io/2017/11/30/Mathematics/2017-11-30-Concave%20and%20Convex%20Function/"/>
+    <id>https://zhichengMLE.github.io/2017/11/30/Mathematics/2017-11-30-Concave and Convex Function/</id>
+    <published>2017-11-30T13:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.950Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Concave-and-Convex-Function&quot;&gt;&lt;a href=&quot;#Concave-and-Convex-Function&quot; class=&quot;headerlink&quot; title=&quot;Concave and Convex
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Mathematics" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Mathematics/"/>
+    
+    
+      <category term="Machine-Learning-Mathematics" scheme="https://zhichengMLE.github.io/tags/Machine-Learning-Mathematics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Batch Gradient Descent</title>
+    <link href="https://zhichengMLE.github.io/2017/11/30/Algorithm/Optimize%20Algorithm/2017-11-30-Batch%20Gradient%20Descent/"/>
+    <id>https://zhichengMLE.github.io/2017/11/30/Algorithm/Optimize Algorithm/2017-11-30-Batch Gradient Descent/</id>
+    <published>2017-11-30T09:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.948Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Batch-Gradient-Descent&quot;&gt;&lt;a href=&quot;#Batch-Gradient-Descent&quot; class=&quot;headerlink&quot; title=&quot;Batch Gradient Descent&quot;&gt;&lt;/a&gt;Batch Gradient
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Algorithm/"/>
+    
+    
+      <category term="Machine-Learning-Algorithm" scheme="https://zhichengMLE.github.io/tags/Machine-Learning-Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Get More Data</title>
+    <link href="https://zhichengMLE.github.io/2017/11/29/ML%20System%20Tips/2017-11-30-Get%20More%20Data/"/>
+    <id>https://zhichengMLE.github.io/2017/11/29/ML System Tips/2017-11-30-Get More Data/</id>
+    <published>2017-11-30T03:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.949Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Get-More-Data&quot;&gt;&lt;a href=&quot;#Get-More-Data&quot; class=&quot;headerlink&quot; title=&quot;Get More Data&quot;&gt;&lt;/a&gt;Get More Data&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-System-Tips" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-System-Tips/"/>
+    
+    
+      <category term="Machine-Learning-System-Tips" scheme="https://zhichengMLE.github.io/tags/Machine-Learning-System-Tips/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to use MathJax in Markdown</title>
+    <link href="https://zhichengMLE.github.io/2017/11/29/Others/Markdown/2017-11-30-How%20to%20use%20MathJax%20in%20Markdown/"/>
+    <id>https://zhichengMLE.github.io/2017/11/29/Others/Markdown/2017-11-30-How to use MathJax in Markdown/</id>
+    <published>2017-11-30T03:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;How-to-use-MathJax-in-Markdown&quot;&gt;&lt;a href=&quot;#How-to-use-MathJax-in-Markdown&quot; class=&quot;headerlink&quot; title=&quot;How to use MathJax in
+        
+      
+    
+    </summary>
+    
+      <category term="Markdown" scheme="https://zhichengMLE.github.io/categories/Markdown/"/>
+    
+    
+      <category term="Markdown" scheme="https://zhichengMLE.github.io/tags/Markdown/"/>
+    
+      <category term="Mathjax" scheme="https://zhichengMLE.github.io/tags/Mathjax/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo Next Theme Beautification</title>
+    <link href="https://zhichengMLE.github.io/2017/11/22/Others/Hexos/2017-11-23-Hexo%20Next%20Theme%20Beautification/"/>
+    <id>https://zhichengMLE.github.io/2017/11/22/Others/Hexos/2017-11-23-Hexo Next Theme Beautification/</id>
+    <published>2017-11-23T03:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Hexo-Next-Theme-Beautification&quot;&gt;&lt;a href=&quot;#Hexo-Next-Theme-Beautification&quot; class=&quot;headerlink&quot; title=&quot;Hexo Next Theme
+        
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://zhichengMLE.github.io/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="https://zhichengMLE.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Deploy Blog With Hexo And Github Page</title>
+    <link href="https://zhichengMLE.github.io/2017/11/21/Others/Hexos/2017-11-22-Deploy%20Blog%20With%20Hexo%20And%20Github%20Page/"/>
+    <id>https://zhichengMLE.github.io/2017/11/21/Others/Hexos/2017-11-22-Deploy Blog With Hexo And Github Page/</id>
+    <published>2017-11-22T03:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Deploy-Blog-With-Hexo-And-Github-Page&quot;&gt;&lt;a href=&quot;#Deploy-Blog-With-Hexo-And-Github-Page&quot; class=&quot;headerlink&quot; title=&quot;Deploy Blog With
+        
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://zhichengMLE.github.io/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="https://zhichengMLE.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tylor Expansion Example</title>
+    <link href="https://zhichengMLE.github.io/2017/11/04/Mathematics/Calculus/2017-11-04-Typlor%20Expansion%20Example/"/>
+    <id>https://zhichengMLE.github.io/2017/11/04/Mathematics/Calculus/2017-11-04-Typlor Expansion Example/</id>
+    <published>2017-11-04T07:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.951Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Tylor-Expansion-Example&quot;&gt;&lt;a href=&quot;#Tylor-Expansion-Example&quot; class=&quot;headerlink&quot; title=&quot;Tylor Expansion Example&quot;&gt;&lt;/a&gt;Tylor Expansion
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Mathematics" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Mathematics/"/>
+    
+    
+      <category term="Machine-Learning" scheme="https://zhichengMLE.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Mathematics" scheme="https://zhichengMLE.github.io/tags/Mathematics/"/>
+    
+      <category term="Calculus" scheme="https://zhichengMLE.github.io/tags/Calculus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Practical Derivatives</title>
+    <link href="https://zhichengMLE.github.io/2017/11/03/Mathematics/Calculus/2017-11-03-Practical%20Derivatives/"/>
+    <id>https://zhichengMLE.github.io/2017/11/03/Mathematics/Calculus/2017-11-03-Practical Derivatives/</id>
+    <published>2017-11-03T09:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.950Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Practical-Derivatives&quot;&gt;&lt;a href=&quot;#Practical-Derivatives&quot; class=&quot;headerlink&quot; title=&quot;Practical Derivatives&quot;&gt;&lt;/a&gt;Practical
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Mathematics" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Mathematics/"/>
+    
+    
+      <category term="Machine-Learning" scheme="https://zhichengMLE.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Mathematics" scheme="https://zhichengMLE.github.io/tags/Mathematics/"/>
+    
+      <category term="Calculus" scheme="https://zhichengMLE.github.io/tags/Calculus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Differentiation Rules</title>
+    <link href="https://zhichengMLE.github.io/2017/11/02/Mathematics/Calculus/2017-11-02-Differentiation%20Rules/"/>
+    <id>https://zhichengMLE.github.io/2017/11/02/Mathematics/Calculus/2017-11-02-Differentiation Rules/</id>
+    <published>2017-11-02T04:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.950Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Differentiation-Rules&quot;&gt;&lt;a href=&quot;#Differentiation-Rules&quot; class=&quot;headerlink&quot; title=&quot;Differentiation Rules&quot;&gt;&lt;/a&gt;Differentiation
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Mathematics" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Mathematics/"/>
+    
+    
+      <category term="Machine-Learning" scheme="https://zhichengMLE.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Mathematics" scheme="https://zhichengMLE.github.io/tags/Mathematics/"/>
+    
+      <category term="Calculus" scheme="https://zhichengMLE.github.io/tags/Calculus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>What is a one-sided limits?</title>
+    <link href="https://zhichengMLE.github.io/2017/11/01/Mathematics/Calculus/2017-11-02-What%20is%20a%20one-sided%20limit/"/>
+    <id>https://zhichengMLE.github.io/2017/11/01/Mathematics/Calculus/2017-11-02-What is a one-sided limit/</id>
+    <published>2017-11-02T02:23:19.000Z</published>
+    <updated>2018-10-27T04:30:42.950Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;What-is-a-one-sided-limits&quot;&gt;&lt;a href=&quot;#What-is-a-one-sided-limits&quot; class=&quot;headerlink&quot; title=&quot;What is a one-sided limits?&quot;&gt;&lt;/a&gt;What
+        
+      
+    
+    </summary>
+    
+      <category term="Machine-Learning-Mathematics" scheme="https://zhichengMLE.github.io/categories/Machine-Learning-Mathematics/"/>
+    
+    
+      <category term="Machine-Learning" scheme="https://zhichengMLE.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Mathematics" scheme="https://zhichengMLE.github.io/tags/Mathematics/"/>
+    
+      <category term="Calculus" scheme="https://zhichengMLE.github.io/tags/Calculus/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="rzzVuOTIU7jiPfFE-TiS2qmMwMYzGfeY0Go7XkNmoQo">
+
+
+
+  <meta name="msvalidate.01" content="38DC0B52AC1BE8086F0ADFA5A73BD6F2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="When can Machine Learn? - Learning to Answer Yes or No1. Perceptron Hypothesis Set 举例银行发信用卡进行解释  1) Perceptron Hypothesis Set假设空间Hypothesis Set可以用感知器（Perceptron）表示。这种假设空间的思想就类似考试给的成绩，对每一题给一个特定的分数，即加权值">
+<meta name="keywords" content="ReadNote-Machine-Learning-Foundation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.When can Machine Learn? - Learning to Answer Yes or No">
+<meta property="og:url" content="https://zhichengMLE.github.io/2017/10/02/ReadNote-Machine Learning Foudantion -NTU/2017-10-03-2.When can Machine Learn - Learning to Answer Yes or No/index.html">
+<meta property="og:site_name" content="zhichengMLE">
+<meta property="og:description" content="When can Machine Learn? - Learning to Answer Yes or No1. Perceptron Hypothesis Set 举例银行发信用卡进行解释  1) Perceptron Hypothesis Set假设空间Hypothesis Set可以用感知器（Perceptron）表示。这种假设空间的思想就类似考试给的成绩，对每一题给一个特定的分数，即加权值">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/a335a9177d37b3ced5d4763a53f61f3f5b01e0e8/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-1%20PLA.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/48df8c85a8eb4fd2af3331147cd25401dc2f728a/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-2%20PLA%20procedure.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/45e061db302ad3b6622daa8ecc48f802b861874c/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-3%20linear%20seperable.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/d29c4fbd29627be6829f26874e8d23c2a246be6b/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-4%20Noise.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/73b88a89d3618c606f70bb3a6c915acb8686d351/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-5%20Pocket%20Algorithm%20procedure.jpg">
+<meta property="og:updated_time" content="2018-10-27T04:30:42.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2.When can Machine Learn? - Learning to Answer Yes or No">
+<meta name="twitter:description" content="When can Machine Learn? - Learning to Answer Yes or No1. Perceptron Hypothesis Set 举例银行发信用卡进行解释  1) Perceptron Hypothesis Set假设空间Hypothesis Set可以用感知器（Perceptron）表示。这种假设空间的思想就类似考试给的成绩，对每一题给一个特定的分数，即加权值">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/a335a9177d37b3ced5d4763a53f61f3f5b01e0e8/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-1%20PLA.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zhichengMLE" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zhichengMLE.github.io/2017/10/02/ReadNote-Machine Learning Foudantion -NTU/2017-10-03-2.When can Machine Learn - Learning to Answer Yes or No/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>2.When can Machine Learn? - Learning to Answer Yes or No | zhichengMLE</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109130641-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109130641-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?798a0c674f239fd096e136d6fae20262";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhichengMLE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-projects">
+    <a href="/projects" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-star"></i> <br>Projects</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">10</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">44</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhichengMLE.github.io/2017/10/02/ReadNote-Machine Learning Foudantion -NTU/2017-10-03-2.When can Machine Learn - Learning to Answer Yes or No/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhichengMLE">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhichengMLE">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">2.When can Machine Learn? - Learning to Answer Yes or No
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-02T19:23:19-04:00">2017-10-03</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ReadNote/" itemprop="url" rel="index"><span itemprop="name">ReadNote</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="When-can-Machine-Learn-Learning-to-Answer-Yes-or-No"><a href="#When-can-Machine-Learn-Learning-to-Answer-Yes-or-No" class="headerlink" title="When can Machine Learn? - Learning to Answer Yes or No"></a>When can Machine Learn? - Learning to Answer Yes or No</h1><h2 id="1-Perceptron-Hypothesis-Set"><a href="#1-Perceptron-Hypothesis-Set" class="headerlink" title="1. Perceptron Hypothesis Set"></a>1. Perceptron Hypothesis Set</h2><blockquote>
+<p>举例银行发信用卡进行解释</p>
+</blockquote>
+<h3 id="1-Perceptron-Hypothesis-Set-1"><a href="#1-Perceptron-Hypothesis-Set-1" class="headerlink" title="1) Perceptron Hypothesis Set"></a>1) Perceptron Hypothesis Set</h3><p>假设空间Hypothesis Set可以用感知器（Perceptron）表示。这种假设空间的思想就类似考试给的成绩，对每一题给一个特定的分数，即加权值(权重);<br>然后再设计一个及格线，即所谓的阈值或门槛值（threshold），如果加权求和的值大于这个阈值就叫符合条件了，即输出1，小于对应的输出-1。<br>表示为公式（1）</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&h(x)∈H
+\\
+&h(x) = sign(\sum_{i=1}^d w_ix_i)
+\end{align}
+\tag{$1$}</script><p>其中 sign函数表示为取符号，即 sign(正数) = 1， sign（负数） = -1，如公式（2）所示。</p>
+<script type="math/tex; mode=display">sign(x)=\left\{
+\begin{align}
+& +1 \quad x>0 \\
+&-1 \quad x<0
+\end{align}
+\right.
+\tag{$2$}</script><p>最后将$h(x)$ 与阈值作比较，得到公式（3）。</p>
+<script type="math/tex; mode=display">
+h(x) = sign(\sum_{i=1}^d w_ix_i - threshold)
+\tag{$3$}</script><h3 id="2-Perceptron-Hypothesis-Set公式化简"><a href="#2-Perceptron-Hypothesis-Set公式化简" class="headerlink" title="2) Perceptron Hypothesis Set公式化简"></a>2) Perceptron Hypothesis Set公式化简</h3><p>为了表达方便，可以对$h(x)$做数学上的讲话，如公式（4）所示。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+h(x) &= sign(\sum_{i=1}^d w_ix_i - threshold) \\
+&=sign(\sum_{i=1}^d w_ix_i - threshold - 1) \\
+&=sign(\sum_{i=1}^d w_ix_i - w_0-x_0) \\
+&=sign(\sum_{i=0}^d w_ix_i) \\
+&=sign(w^T\cdot  x)
+\end{align}
+\tag{$4$}</script><blockquote>
+<p>如上所示，将负阈值表示为权值向量中的一项($w_0$)，而对应输入分量则被默认为1，用$x_0$ 最终将公式简化为两个向量内积的形式，其中T表示转置。</p>
+</blockquote>
+<hr>
+<p><br><br><br></p>
+<h2 id="2-Peceptron-Learning-Algorithm-PLA"><a href="#2-Peceptron-Learning-Algorithm-PLA" class="headerlink" title="2. Peceptron Learning Algorithm(PLA)"></a>2. Peceptron Learning Algorithm(PLA)</h2><h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1) Introduction"></a>1) Introduction</h3><h4 id="①-Question"><a href="#①-Question" class="headerlink" title="① Question"></a>① Question</h4><p>Hypothesis Set $H$包含所有可能的Perceptron，那么具体选用哪一组Perceptron来组合成$g(x)$ 呢?</p>
+<h4 id="②-Analyze"><a href="#②-Analyze" class="headerlink" title="② Analyze"></a>② Analyze</h4><ul>
+<li>$g(x)$ 和目标函数f越接近越好，但问题是我们不知道f（如果知道了就不需要学习了）</li>
+<li>但是我们知道的是样本输入$x$在$f(x)$ 作用下得到的标记$y$。</li>
+</ul>
+<p>所以如果我们能使得$g(x)$ 在所有的样本输入中都能够得到跟函数$f(x)$ 作用过输入得到的输出一样的话，我们认为这时的$g(x)$ 是不错的。（在后面的章节还会在这种思想的基础上更深入的讨论这一问题）</p>
+<h4 id="③-Solution"><a href="#③-Solution" class="headerlink" title="③ Solution"></a>③ Solution</h4><p>我们想到一个简单的方式，就是一步一步的修正错误的分类，在二维平面中可以想象成一条初始的直线，在经过不断的纠正它的错误（就是旋转平移之类的）使得最终的结果可以达到希望的效果。</p>
+<p>还要在重复上一节中已经得到的一个结论，在感知器模型中，每一个假设函数$g(x)$ 都对应一个权值向量。因此我们要做的就是不断修正这个权值向量使得最接近目标函数$f(x)$ 。即PLA算法</p>
+<hr>
+<p><br><br><br></p>
+<h3 id="2-PLA"><a href="#2-PLA" class="headerlink" title="2) PLA"></a>2) PLA</h3><h4 id="①-PLA步骤"><a href="#①-PLA步骤" class="headerlink" title="① PLA步骤"></a>① PLA步骤</h4><p>首先我们在设置初始$w_0$（注意此处是向量不是向量的分量！），比如设置为0向量，然后使用训练样本来将权值向量修正的更接近目标函数$f(x)$。</p>
+<p>通过公式（5）来判断什么时候需要进行修正:</p>
+<script type="math/tex; mode=display">
+sign( w_t^T \cdot x_{n(t)} \neq y_{(n)})
+\tag{$5$}</script><p>通过公式（6）来进行修正：</p>
+<script type="math/tex; mode=display">
+w_{t+1} = w_t + y_{n(t)} \cdot x_{n(t)}
+\tag{$6$}</script><h4 id="②-图示说明"><a href="#②-图示说明" class="headerlink" title="② 图示说明"></a>② 图示说明</h4><p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/a335a9177d37b3ced5d4763a53f61f3f5b01e0e8/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-1%20PLA.png" alt="PLA"></p>
+<center>图一 PLA<sup>[1]</sup></center>
+
+<blockquote>
+<p>在本身标记为+1时，权值向量和输入向量的内积为负数，对权值向量略作修改，加上一个标记y和输入向量的乘积，得到一个新的权值向量，可以看出新的权值向量和输入向量的相乘之后符合了标记的要求。</p>
+<p>在本身标记为-1时，权值向量和输入向量的内积为正数，对权值向量略作修改，加上一个标记y和输入向量的乘积，得到一个新的权值向量，可以看出新的权值向量和输入向量的相乘之后符合了标记的要求。</p>
+</blockquote>
+<p>重复查找错误样本和修改加权向量，直到再也找不到可以使公式(5)成立的样本为止，此时得到的加权向量，即为我们想要的最终$g(x)$</p>
+<p>具体流程如下图：</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/48df8c85a8eb4fd2af3331147cd25401dc2f728a/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-2%20PLA%20procedure.jpg" alt="PLA"></p>
+<center>图二 PLA Procedure<sup>[1]</sup></center>
+
+
+
+<blockquote>
+<p>疑问:如何查找错误样本点，如何确定没有错误的点了?</p>
+</blockquote>
+<p>一个简单的方式就是将训练样本编号，从1到n，以按从1到n的顺序不断查找错误点，如果没有错就自动的用下一个样本点继续查找，当从1到n这n个样本点都没有产生错误时，算法即结束得到$g(x)$ 。将这种方式的算法叫做Cyclic PLA。</p>
+<blockquote>
+<p>新的疑问:</p>
+<p>1.这个算法一定会找到一个能使所有的样本都不符合的情况吗(即是否会停下来)？</p>
+<p>2.算法找到的真的是最好的g(x)吗？</p>
+<p>3.应用到测试集中，结果还会一样吗？</p>
+<p>详见 ③ PLA的理论保证</p>
+</blockquote>
+<h4 id="③-PLA的理论保证"><a href="#③-PLA的理论保证" class="headerlink" title="③ PLA的理论保证"></a>③ PLA的理论保证</h4><h5 id="i-前提条件"><a href="#i-前提条件" class="headerlink" title="i) 前提条件"></a>i) 前提条件</h5><p>首先很明显，要用一条直线做Binary Classification必须要求数据线性可分，否则不可以分开（想象一刀切）<br>如图三：</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/45e061db302ad3b6622daa8ecc48f802b861874c/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-3%20linear%20seperable.png" alt="Linear Separable"></p>
+<center>图三 Linear Seperable <sup>[1]</sup></center>
+
+<h5 id="ii-理论推导"><a href="#ii-理论推导" class="headerlink" title="ii) 理论推导"></a>ii) 理论推导</h5><p>首先PLA的核心是每次修正都让权值的向量$W^T$（T代表在第T次停下）更接近于理想的权值向量$W_f$,如何衡量两个向量的相似程度呢？内积，即对向量$W^T$和$W_f$做内积。</p>
+<blockquote>
+<p>内积的大小与2个向量的方向与大小都有关，所以如果我们直接做内积的话，会受到向量长度的影响，所以要做归一化处理，如公式7</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\frac{w_f^T \cdot w_T}{ {\lvert \lvert w_f^T \rvert \rvert} \cdot {\lvert \lvert w_T\rvert \rvert}}
+\tag{$7$}</script><p>公式用于衡量两个向量的方向的差别程度，但是怎么处理这个公式呢？</p>
+<p>先看分子,有之前的公式（6）我们可以得到公式（8）:</p>
+<script type="math/tex; mode=display">
+{w_f^T \cdot w_T} \geq {w_f^T} \cdot (w_{T-1} + y_{n(T-1)} \cdot x_{n(T-1)})
+\tag{$8$}</script><p>如果PLA都会让权值越来越接近理想值，那么由之前的公式（5），我们其实可以推出公式（9）&lt;—(因为$w_f$是最理想的值，那时候应该所有的预测值都和实际相等）和公式（10）&lt;—(因为只有再犯错误的时候才改变，所以$W_t^T$与实际值会不一样):</p>
+<script type="math/tex; mode=display">
+y_{n(t)} w_f^T x_{n(t)} \geq \min \limits_n\ y_n w_f^T x_n > 0
+\tag{$9$}</script><script type="math/tex; mode=display">
+y_{n(t)} w_f^T x_{n(t)} \leq 0
+\tag{$10$}</script><p>所以由公式（9），我们可以对公式（8）进一步限制他的范围：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+{w_f^T \cdot w_T} &\geq {w_f^T} \cdot (w_{T-1} + y_{n(T-1)} \cdot x_{n(T-1)}) \\
+                  &\geq {w_f^T} w_{T-1} + \min \limits_n w_f^T \cdot y_{n(T-1)} \cdot x_{n(T-1)}) \\
+                  &\geq {w_f^T} w_{T-2} + 2 - \min \limits_n w_f^T \cdot y_{n(T-1)} \cdot x_{n(T-1)}) \\
+                  & ... \\
+                  &\geq {w_f^T} w_{0} + T - \min \limits_n w_f^T \cdot y_{n(T-1)} \cdot x_{n(T-1)}) \\
+(w_0 = 0) \quad   &\geq 0 + T - \min \limits_n w_f^T \cdot y_{n(T-1)} \cdot  x_{n(T-1)}) \\
+                  &\geq T - \min \limits_n w_f^T \cdot y_{n(T-1)} \\
+(\min \limits_n\ y_n w_f^T x_n > 0) \quad  & > 0
+\end{align}
+\tag{$11$}</script><p>公式（10）中，我们关键是要得到</p>
+<script type="math/tex; mode=display">
+{w_f^T \cdot w_T} > T - \min \limits_n w_f^T \cdot y_{n(T-1)}</script><p>接着，我们来研究分母:除了$w_T$不容易确定之外，$w_T$的L1范式也不容易得出,但是我们可以转换一下，结合公式（8）(10)来进行处理，即公式（12）。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+{\lvert \lvert w_T\rvert \rvert} ^ 2 &= {\lvert \lvert w_{T-1} + y_{n(T-1)} x_{n(T-1)} \rvert \rvert} ^ 2   \\
+                                     &= {\lvert \lvert w_{T-1} \rvert \rvert} ^ 2 + {\lvert \lvert y_{n(T-1)} x_{n(T-1)} \rvert \rvert} ^ 2 + 2y_{n(T-1)} w_{T-1} x_{n(T-1)}  \\
+                                     & \leq {\lvert \lvert w_{T-1} \rvert \rvert} ^ 2 + {\lvert \lvert y_{n(T-1)} x_{n(T-1)} \rvert \rvert} ^ 2 + 0  \\
+                                     & \leq {\lvert \lvert w_{T-1} \rvert \rvert} ^ 2 + \max\limits_n {\lvert \lvert x_{n} \rvert \rvert} ^ 2  \\
+                                     & \leq {\lvert \lvert w_{T-2} \rvert \rvert} ^ 2 + 2 - \max\limits_n {\lvert \lvert x_{n} \rvert \rvert} ^ 2  \\
+                                     & ... \\
+                                     & \leq {\lvert \lvert w_{0} \rvert \rvert} ^ 2 + T - \max\limits_n {\lvert \lvert x_{n} \rvert \rvert} ^ 2  \\
+                                     & = T \cdot \max\limits_n {\lvert \lvert x_{n} \rvert \rvert} ^ 2
+\end{align}
+\tag{$12$}</script><p>到此为止，我们已经把分子的下限和分母的上限都找到了，这时候总体的值就应该大于等于某个值。有公式（11）（12），我们可以推论到公式（13）。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{w_f^T \cdot w_T}{ {\lvert \lvert w_f^T \rvert \rvert} \cdot {\lvert \lvert w_T\rvert \rvert}} & \geq \frac{T \cdot \min\limits_n y_n w_f^T x_n}{w_f^T \sqrt{T \max\limits_n {\lvert \lvert w_n \rvert \rvert}}}  \\
+         & = \sqrt{T} \frac{\min\limits_n y_n \frac{w_f^T}{\lvert \lvert w_f^T \rvert \rvert} x_n} {\sqrt{\max\limits_n {\lvert \lvert w_n \rvert \rvert} ^ 2 }} \\
+         & = \sqrt(T) \cdot C
+         \quad \quad \quad(其中 C = \frac{\min\limits_n y_n \frac{w_f^T}{\lvert \lvert w_f^T \rvert \rvert} x_n} {\sqrt{\max\limits_n {\lvert \lvert w_n \rvert \rvert} ^ 2 }})
+\end{align}
+\tag{$13$}</script><p>再有归一化之后的内积不可以大于1，所以公式（13）可以加以限制为公式（14)</p>
+<script type="math/tex; mode=display">
+\begin{align}
+1 \geq
+\frac{w_f^T \cdot w_T}{ {\lvert \lvert w_f^T \rvert \rvert} \cdot {\lvert \lvert w_T\rvert \rvert}} & \geq \frac{T \cdot \min\limits_n y_n w_f^T x_n}{w_f^T \sqrt{T \max\limits_n {\lvert \lvert w_n \rvert \rvert}}}
+\end{align}
+\tag{$14$}</script><p>求解公式（14）可以得到公式（15）</p>
+<script type="math/tex; mode=display">
+\begin{align}
+T &\leq \frac{\max\limits_n {\lvert \lvert w_n \rvert \rvert} ^ 2 } {\left( {\min\limits_n y_n \frac{w_f^T}{\lvert \lvert w_f^T \rvert \rvert} x_n}\right)^2}  \\
+  & = \frac{R^2}{ρ^2}\\
+ &（其中：R^2 = \max\limits_n {\lvert \lvert w_n \rvert \rvert} ^ 2, \quad
+                         ρ^2 = {\left( {\min\limits_n y_n \frac{w_f^T}{\lvert \lvert w_f^T \rvert \rvert} x_n}\right)^2}
+\end{align}
+\tag{$15$}</script><blockquote>
+<p>从公式（15）可以看出，T是有上限的，所以可以说明在线性可分的情况下PLA算法最终会停止于T点，找到一个最接近目标函数的target function $g(x)$</p>
+</blockquote>
+<hr>
+<p><br><br><br></p>
+<h2 id="3-Non-Separable-Data"><a href="#3-Non-Separable-Data" class="headerlink" title="3. Non-Separable Data"></a>3. Non-Separable Data</h2><h3 id="1-PLA的缺陷"><a href="#1-PLA的缺陷" class="headerlink" title="1) PLA的缺陷"></a>1) PLA的缺陷</h3><p>上面提到的PLA算法是基于线性可分的数据集的，这种算法不实用，有2个原因。</p>
+<ol>
+<li>在机器学习的时候，我们是不知道数据是否可分的，如果不可分，那样PLA不停止怎么办？</li>
+<li>还是与PLA不停止有关，这个时候如果数据集真的线性可分，但是因为数据量太大，跑了很久都没有跑完，怎么办？我们不知道究竟是数据问题，还是数据量太大还没跑完的问题。</li>
+</ol>
+<p>所以这时候要求我们改进PLA算法。</p>
+<h3 id="2）实际应用中线性可分多还是线性不可分的数据多？"><a href="#2）实际应用中线性可分多还是线性不可分的数据多？" class="headerlink" title="2）实际应用中线性可分多还是线性不可分的数据多？"></a>2）实际应用中线性可分多还是线性不可分的数据多？</h3><p>线性不可分的数据多：因为实际应用中存在很多噪音（Noise）。而出现噪音的原因有很多种，如：</p>
+<ul>
+<li>录入数据的时候出错</li>
+<li>采集数据的设备存在误差</li>
+<li>…</li>
+</ul>
+<p>所以存在噪音的时候，数据集会变成图四那样。</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/d29c4fbd29627be6829f26874e8d23c2a246be6b/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-4%20Noise.png" alt="Noise"></p>
+<p>图四 Noise</p>
+<p>因为噪音占的比例不会很大，所以最终我们还是可以找到犯错率最少的权值向量$w_g$，如公式（16）所示。</p>
+<script type="math/tex; mode=display">
+\DeclareMathOperator*{\argmin}{argmin}
+\begin{equation}
+  w_g = \mathop{\argmin}_{w}{\sum_{n=1}^N sign(w^T \cdot x_n) \neq y_n}
+\end{equation}
+\tag{$16$}</script><blockquote>
+<p>但是这个公式在数学上是NP难问题，我们无法直接求解，于是我们需要找出一种近似的算法来求解这个问题：pocket 算法。</p>
+</blockquote>
+<h3 id="3-Pocket-算法"><a href="#3-Pocket-算法" class="headerlink" title="3) Pocket 算法"></a>3) Pocket 算法</h3><h4 id="①-Pocket算法原理"><a href="#①-Pocket算法原理" class="headerlink" title="① Pocket算法原理"></a>① Pocket算法原理</h4><blockquote>
+<p>Pocket 算法属于贪心算法，即如果找到原来的权值更好的权值，才去做修改，否则停止。</p>
+</blockquote>
+<p>流程如下：</p>
+<ol>
+<li>也是随机的初始化一个权值向量</li>
+<li>随机的使用n个点中的一个点去发现是否有错误（此处与cyclic PLA使用的循环方式有所不同，不是按顺序一个一个的查看是否符合条件，而是在n个点中随机的抽取，这种方式可以增加其寻找最优解的速度）</li>
+<li>和PLA一样使用公式2-5进行修正.</li>
+<li>如果有了修正，则计算出刚刚修正过的权值向量和上一个权值向量到底谁犯的错误比较少，将少的保留重复第2步到第4步的动作。</li>
+<li>假如很长时间都没有新的权值向量比当前的权值向量犯错更少，则返回该向量作为函数g。</li>
+</ol>
+<p>流程图如下：</p>
+<p><img src="https://raw.githubusercontent.com/JasonDean-1/MarkdownPhoto/73b88a89d3618c606f70bb3a6c915acb8686d351/MachineLearning/Machine%20Learning%20Foundation%20--%20Hsuan-Tien%20Lin%20in%20NTU/chapter2-5%20Pocket%20Algorithm%20procedure.jpg" alt="Pocket Algorithm Procedure"></p>
+<center> 图五 Pocket Algorithm Procedure </center>
+
+
+<h4 id="②优缺点分析"><a href="#②优缺点分析" class="headerlink" title="②优缺点分析"></a>②优缺点分析</h4><p>优点：Pocket算法不需要考虑数据集是否线性可分，都可以进行</p>
+<p>缺点：每有一个错误点，都要遍历整个数据集来获得该店的错误率$e$，所以计算量会很大</p>
+<hr>
+<p><br><br><br></p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><ol>
+<li>首先介绍了Binary Classification中最简单的PLA算法</li>
+<li>然后讨论了PLA算法能在某一步之后停下来。</li>
+<li>最后讨论了PLA算法有缺陷：数据必须线性可分。所以根据这个缺点，引用了Pocket算法</li>
+</ol>
+<hr>
+<p><br><br><br></p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1]机器学习基石(台湾大学-林轩田)\2\2 - 2 - Perceptron Learning Algorithm (PLA) (19-46)</p>
+<p><br></p>
+<h2 id><a href="#" class="headerlink" title></a><br></h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author: </strong>zhichengMLE</li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://zhichengMLE.github.io/2017/10/02/ReadNote-Machine Learning Foudantion -NTU/2017-10-03-2.When can Machine Learn - Learning to Answer Yes or No/" title="2.When can Machine Learn? - Learning to Answer Yes or No">https://zhichengMLE.github.io/2017/10/02/ReadNote-Machine Learning Foudantion -NTU/2017-10-03-2.When can Machine Learn - Learning to Answer Yes or No/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReadNote-Machine-Learning-Foundation/" rel="tag"># ReadNote-Machine-Learning-Foundation</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/02/ReadNote-Machine Learning Foudantion -NTU/2017-10-02-1.When can Machine Learn - The Learning Problem/" rel="next" title="1.When can Machine Learn? - The Learning Problem">
+                <i class="fa fa-chevron-left"></i> 1.When can Machine Learn? - The Learning Problem
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/04/ReadNote-Machine Learning Foudantion -NTU/2017-10-04-3.When can Machine Learn - Types of Learning/" rel="prev" title="3.When can Machine Learn? - Types of Learning">
+                3.When can Machine Learn? - Types of Learning <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59fadb7b45993008" async="async"></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="zhichengMLE">
+            
+              <p class="site-author-name" itemprop="name">zhichengMLE</p>
+              <p class="site-description motion-element" itemprop="description">I am interested in Computer Vision and Natural Language Processing. Currently working on understanding the image via NLP and use CV to reconstruct the 3D image.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhichengMLE" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jason--ding@outlook.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.linkedin.com/in/zhicheng-ding-a80595b3/" target="_blank" title="Linkedin" rel="external nofollow"><i class="fa fa-fw fa-linkedin"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/u/0/107804403806511724071" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/jJasonDean" target="_blank" title="FB Page" rel="external nofollow"><i class="fa fa-fw fa-facebook"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/5357323/zhichengmle" target="_blank" title="StackOverflow" rel="external nofollow"><i class="fa fa-fw fa-stack-overflow"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/jasonwoolf" title="Place Holder" target="_blank">Place Holder</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#When-can-Machine-Learn-Learning-to-Answer-Yes-or-No"><span class="nav-text">When can Machine Learn? - Learning to Answer Yes or No</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Perceptron-Hypothesis-Set"><span class="nav-text">1. Perceptron Hypothesis Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Perceptron-Hypothesis-Set-1"><span class="nav-text">1) Perceptron Hypothesis Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Perceptron-Hypothesis-Set公式化简"><span class="nav-text">2) Perceptron Hypothesis Set公式化简</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Peceptron-Learning-Algorithm-PLA"><span class="nav-text">2. Peceptron Learning Algorithm(PLA)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1) Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-Question"><span class="nav-text">① Question</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②-Analyze"><span class="nav-text">② Analyze</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③-Solution"><span class="nav-text">③ Solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-PLA"><span class="nav-text">2) PLA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-PLA步骤"><span class="nav-text">① PLA步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②-图示说明"><span class="nav-text">② 图示说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③-PLA的理论保证"><span class="nav-text">③ PLA的理论保证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#i-前提条件"><span class="nav-text">i) 前提条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ii-理论推导"><span class="nav-text">ii) 理论推导</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Non-Separable-Data"><span class="nav-text">3. Non-Separable Data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-PLA的缺陷"><span class="nav-text">1) PLA的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）实际应用中线性可分多还是线性不可分的数据多？"><span class="nav-text">2）实际应用中线性可分多还是线性不可分的数据多？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Pocket-算法"><span class="nav-text">3) Pocket 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-Pocket算法原理"><span class="nav-text">① Pocket算法原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②优缺点分析"><span class="nav-text">②优缺点分析</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-text"></span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhichengMLE</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 7813,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.1.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.1.0"></script>
+
+
+  
+
+  
+
+</body>
+</html>
